@@ -6,7 +6,7 @@ defmodule ExAzure.Utils do
     [normalize_to_charlist(h) | normalize_to_charlist(t)]
   end
 
-  def normalize_to_charlist(term) do
+  def normalize_to_charlist(term) when is_binary(term) do
     with \
       true <- String.valid?(term),
       charlist <- Kernel.to_charlist(term),
@@ -18,6 +18,8 @@ defmodule ExAzure.Utils do
         term
     end
   end
+
+  def normalize_to_charlist(term), do: term
 
   defp ascii_printable?(list, counter \\ :infinity)
 
