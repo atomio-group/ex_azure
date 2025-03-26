@@ -11,7 +11,7 @@ defmodule ExAzure.Server do
     account = to_charlist(config[:account])
     access_key = to_charlist(config[:access_key])
 
-    {:ok, client} = :erlazure.start(account, access_key)
+    {:ok, client} = :erlazure.new(account, access_key)
     {:ok, [config: config, client: client]}
   end
 
